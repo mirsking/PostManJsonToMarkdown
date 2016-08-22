@@ -1,0 +1,107 @@
+{
+	"variables": [],
+	"info": {
+		"name": "01 Understand OData in 6 steps",
+		"_postman_id": "73d75163-a468-b420-955a-9342edfba430",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Step 1: Requesting resources",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Step 2: Requesting an individual resource",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People('russellwhyte')",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Step 3: Queries",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People?$top=2&$select=FirstName, LastName&$filter=Trips/any(d:d/Budget gt 3000)",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Step 4: Creating a new resource",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserName\":\"lewisblack\",\r\n    \"FirstName\":\"Lewis\",\r\n    \"LastName\":\"Black\",\r\n    \"Emails\":[\r\n        \"lewisblack@example.com\"\r\n    ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Step 5: Relating resources (Restier not Support)",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People/('lewisblack')/Trips/$ref",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"@odata.id\":\"http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People('russellwhyte')/Trips(0)\"\n}"
+				},
+				"description": "Restier don't support odata.id yet."
+			},
+			"response": []
+		},
+		{
+			"name": "Step 6: Invoking a function",
+			"request": {
+				"url": "http://services.odata.org/TripPinRESTierService/(S(3mslpb2bc0k5ufk24olpghzx))/People('russellwhyte')/Trips(0)/Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetInvolvedPeople",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
